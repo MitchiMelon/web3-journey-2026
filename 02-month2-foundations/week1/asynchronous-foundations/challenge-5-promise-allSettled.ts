@@ -1,6 +1,6 @@
 import { fetchWalletBalance } from "./challenge-1-basic-promise";
 
-async function fetchAllBalances(addresses: string[]): Promise<{
+export async function fetchAllBalances(addresses: string[]): Promise<{
   successful: Array<{ address: string; balance: number }>;
   failed: Array<{ address: string; error: string }>;
   successCount: number;
