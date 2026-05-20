@@ -37,7 +37,7 @@ function sleep(ms: number): Promise<void> {
 }
 
 // TEST 7:
-async function runTest7() {
+export async function runTest7() {
   console.log("\n=== CHALLENGE 7: Retry Logic ===");
   _unstableCallCount = 0;
 
