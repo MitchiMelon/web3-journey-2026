@@ -35,7 +35,7 @@ async function fetchBalanceWithFallback(
 }
 
 // TEST 6:
-async function runTest6() {
+export async function runTest6() {
   console.log("\n=== CHALLENGE 6: Promise.race + Timeout ===");
 
   // Test 1: Fast fetch — should succeed before 1000ms timeout
