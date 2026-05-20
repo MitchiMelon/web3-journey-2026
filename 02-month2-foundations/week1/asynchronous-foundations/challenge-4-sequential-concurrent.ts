@@ -22,7 +22,7 @@ async function fetchBalancesConcurrent(
 }
 
 // TEST 4:
-async function runTest4() {
+export async function runTest4() {
   console.log("\n=== CHALLENGE 4: Sequential vs Concurrent ===");
   const addresses = ["0xAlice", "0xBob", "0xCarol", "0xUnknown"];
 
