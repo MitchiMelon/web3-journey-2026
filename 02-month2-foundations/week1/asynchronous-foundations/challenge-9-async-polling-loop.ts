@@ -48,7 +48,7 @@ function sleep(ms: number): Promise<void> {
 }
 
 // TEST 9:
-async function runTest9() {
+export async function runTest9() {
   console.log("\n=== CHALLENGE 9: Async Polling Loop ===");
   _txPollCount = {};
 
