@@ -15,7 +15,7 @@ export function fetchWalletBalance(walletAddress: string): Promise<number> {
 }
 
 // TEST 1:
-async function runTest1() {
+export async function runTest1() {
   console.log("\n=== CHALLENGE 1: Create Your First Promise ===");
 
   // Test known wallet
