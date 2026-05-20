@@ -24,7 +24,7 @@ export async function safeGetBalance(address: string): Promise<{
 }
 
 // TEST 3:
-async function runTest3() {
+export async function runTest3() {
   console.log("\n=== CHALLENGE 3: try/catch Error Handling ===");
 
   const good = await safeGetBalance("0xAlice");
@@ -45,4 +45,4 @@ async function runTest3() {
   );
 }
 
-runTest3;
+runTest3();
