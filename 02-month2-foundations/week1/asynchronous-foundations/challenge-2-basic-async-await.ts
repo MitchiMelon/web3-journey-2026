@@ -15,7 +15,7 @@ async function getBalanceSummary(): Promise<{
 }
 
 // TEST 2:
-async function runTest2() {
+export async function runTest2() {
   console.log("\n=== CHALLENGE 2: async/await Basics ===");
   const summary = await getBalanceSummary();
   console.log("Summary:", summary);
