@@ -47,7 +47,7 @@ async function getPortfolioStats(addresses: string[]): Promise<PortfolioStats> {
 }
 
 // TEST 8:
-async function runTest8() {
+export async function runTest8() {
   console.log("\n=== CHALLENGE 8: Async + HOF ===");
   const stats = await getPortfolioStats([
     "0xAlice", // 1500
