@@ -29,7 +29,7 @@ export async function fetchAllBalances(addresses: string[]): Promise<{
 }
 
 // TEST 5:
-async function runTest5() {
+export async function runTest5() {
   console.log("\n=== CHALLENGE 5: Promise.allSettled ===");
   const result = await fetchAllBalances([
     "0xAlice",
@@ -60,3 +60,5 @@ async function runTest5() {
       : "❌ FAIL",
   );
 }
+
+runTest5();
