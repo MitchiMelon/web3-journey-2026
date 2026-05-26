@@ -42,6 +42,7 @@ The runtime environment and framework for my path. I don’t think there’s muc
 
 JS/TS has been a relaxing journey. JavaScript is more flexible. I can code however I want, tinker, and alternate the logic. TypeScript, on the other hand, is strict, but I like it more. It feels like the code has a rigid foundation before I code forward, though it does give me a headache. One concept that’s killing me is async. That’s where I stumbled and halted my progression towards DrizzleORM. It feels like it needs weeks to understand fundamentally. For async itself, I’ll keep working on it for months onward to build better understanding and get it into muscle memory.
 
+**Month 1 Timeline:** 6 April 2026 - 10 May 2026
 **Month 1 Total Hours Spent:** 170 hours
 
 ---
