@@ -34,6 +34,7 @@ app.post("/transactions", async (req, res) => {
 
 // GET transactions filtered by token
 app.get("/transactions/filter", async (req, res) => {
+  console.log("FILTER ROUTE HIT — token:", req.query.token);
   try {
     const { token } = req.query;
     if (!token) {
@@ -44,6 +45,7 @@ app.get("/transactions/filter", async (req, res) => {
       .select()
       .from(transactions)
       .where(eq(transactions.token, token as string));
+    console.log("Query result:", result);
     res.json(result);
   } catch (error) {
     console.error("Database error:", error);
