@@ -32,6 +32,25 @@ app.post("/transactions", async (req, res) => {
   }
 });
 
+// GET transactions filtered by token
+app.get("/transactions/filter", async (req, res) => {
+  try {
+    const { token } = req.query;
+    if (!token) {
+      res.status(400).json({ error: "token query param required" });
+      return;
+    }
+    const result = await db
+      .select()
+      .from(transactions)
+      .where(eq(transactions.token, token as string));
+    res.json(result);
+  } catch (error) {
+    console.error("Database error:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 app.get("/transactions/:hash", async (req, res) => {
   try {
     const result = await db
