@@ -1,0 +1,5 @@
+INSERT 0 6
+ wallet_address | count 
+----------------+-------
+ 0xabc          |     6
+(1 row)
