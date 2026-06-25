@@ -1,0 +1,13 @@
+web3_learning=> INSERT INTO audit_log (wallet_address, is_successful, ip_address) VALUES ('0xabc', true, '192.168.1.1'); 
+INSERT 0 1
+web3_learning=> SELECT * FROM audit_log;
+UPDATE audit_log SET is_successful = false WHERE wallet_address = '0xabc';
+DELETE FROM audit_log WHERE wallet_address = '0xabc';
+ uid | wallet_address | is_successful | ip_address  |          created_at           
+-----+----------------+---------------+-------------+-------------------------------
+   1 | 0xabc          | t             | 192.168.1.1 | 2026-06-24 22:37:11.520638+07
+(1 row)
+
+ERROR:  permission denied for table audit_log
+ERROR:  permission denied for table audit_log
+web3_learning=>
