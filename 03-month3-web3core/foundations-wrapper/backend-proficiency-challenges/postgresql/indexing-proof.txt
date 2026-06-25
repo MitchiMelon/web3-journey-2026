@@ -1,0 +1,46 @@
+web3_backend=# EXPLAIN ANALYZE SELECT * FROM balances WHERE wallet_id = 1;
+                                            QUERY PLAN                                             
+---------------------------------------------------------------------------------------------------
+ Seq Scan on balances  (cost=0.00..1.19 rows=1 width=28) (actual time=0.009..0.011 rows=3 loops=1)
+   Filter: (wallet_id = 1)
+   Rows Removed by Filter: 12
+ Planning Time: 0.355 ms
+ Execution Time: 0.035 ms
+(5 rows)
+
+web3_backend=# SET enable_seqscan = off;
+EXPLAIN ANALYZE SELECT * FROM balances WHERE wallet_id = 1;
+SET enable_seqscan = on;
+SET
+                                                            QUERY PLAN                                                            
+----------------------------------------------------------------------------------------------------------------------------------
+ Index Scan using idx_balances_wallet_id on balances  (cost=0.14..8.15 rows=1 width=28) (actual time=0.071..0.073 rows=3 loops=1)
+   Index Cond: (wallet_id = 1)
+ Planning Time: 0.098 ms
+ Execution Time: 0.089 ms
+(4 rows)
+
+SET
+web3_backend=# EXPLAIN ANALYZE SELECT * FROM balances WHERE token_id = 1;
+                                            QUERY PLAN                                             
+---------------------------------------------------------------------------------------------------
+ Seq Scan on balances  (cost=0.00..1.19 rows=1 width=28) (actual time=0.039..0.041 rows=5 loops=1)
+   Filter: (token_id = 1)
+   Rows Removed by Filter: 10
+ Planning Time: 0.097 ms
+ Execution Time: 0.057 ms
+(5 rows)
+
+web3_backend=# CREATE INDEX idx_balances_token_id ON balances (token_id);
+CREATE INDEX
+web3_backend=# EXPLAIN ANALYZE SELECT * FROM balances WHERE token_id = 1;
+                                            QUERY PLAN                                             
+---------------------------------------------------------------------------------------------------
+ Seq Scan on balances  (cost=0.00..1.19 rows=1 width=28) (actual time=0.016..0.020 rows=5 loops=1)
+   Filter: (token_id = 1)
+   Rows Removed by Filter: 10
+ Planning Time: 3.006 ms
+ Execution Time: 0.037 ms
+(5 rows)
+
+web3_backend=# 
