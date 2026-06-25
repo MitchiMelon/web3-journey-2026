@@ -1,0 +1,19 @@
+DROP TABLE
+DROP TABLE
+DROP TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+INSERT 0 5
+INSERT 0 3
+INSERT 0 15
+web3_backend=# INSERT INTO balances (wallet_id, token_id, balance_wei) VALUES (1, 1, 999);
+ERROR:  duplicate key value violates unique constraint "balances_wallet_id_token_id_key"
+DETAIL:  Key (wallet_id, token_id)=(1, 1) already exists.
+web3_backend=# DELETE FROM tokens WHERE id = 1;
+ERROR:  update or delete on table "tokens" violates foreign key constraint "balances_token_id_fkey" on table "balances"
+DETAIL:  Key (id)=(1) is still referenced from table "balances".
+web3_backend=# UPDATE balances SET balance_wei = -100 WHERE wallet_id = 1 AND token_id = 1;
+ERROR:  new row for relation "balances" violates check constraint "balances_balance_wei_check"
+DETAIL:  Failing row contains (1, 1, 1, -100, 2026-06-25 17:00:42.216221+07).
+web3_backend=# 
