@@ -1,0 +1,22 @@
+web3_learning=> SELECT * FROM wallets_demo;
+INSERT INTO wallets_demo (wallet_address, label, balance) VALUES ('0xzzz', 'test', 100);
+UPDATE wallets_demo SET balance = 0 WHERE wallet_address = '0xaaa123';
+DELETE FROM wallets_demo WHERE wallet_address = '0xaaa123';
+ uid | wallet_address |     label      |  balance   |           timestamp           
+-----+----------------+----------------+------------+-------------------------------
+   1 | 0xaaa123       | first_mover    |  100000000 | 2026-06-24 19:50:58.197764+07
+   2 | 0xbbb234       | shrimp         |        533 | 2026-06-24 19:50:58.197764+07
+   3 | 0xccc345       | clam           |         70 | 2026-06-24 19:50:58.197764+07
+   4 | 0xddd456       | shark          |    5000000 | 2026-06-24 19:50:58.197764+07
+   5 | 0xeee567       | fisherman      |     400800 | 2026-06-24 19:50:58.197764+07
+   6 | 0xfff678       | first_mover    |   10000000 | 2026-06-24 19:50:58.197764+07
+   7 | 0xggg789       |                |    1600100 | 2026-06-24 19:50:58.197764+07
+   8 | 0xhhh890       | zombie_account |          0 | 2026-06-24 19:50:58.197764+07
+   9 | 0xiii111       |                |          0 | 2026-06-24 19:50:58.197764+07
+  10 | 0xjjj222       | whale          | 9700000000 | 2026-06-24 19:50:58.197764+07
+(10 rows)
+
+ERROR:  permission denied for table wallets_demo
+ERROR:  permission denied for table wallets_demo
+ERROR:  permission denied for table wallets_demo
+web3_learning=> 
