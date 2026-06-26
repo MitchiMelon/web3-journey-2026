@@ -1,0 +1,55 @@
+-- EXPERIMENT 1: NON-REPEATABLE READ (READ COMMITTED)
+
+-- Session B
+web3_backend=# BEGIN;
+SELECT balance_wei FROM balances WHERE wallet_id = 1 AND token_id = 1;
+BEGIN
+     balance_wei     
+---------------------
+ 9000000000000000000
+(1 row)
+
+web3_backend=*# SELECT balance_wei FROM balances WHERE wallet_id = 1 AND token_id = 1;
+     balance_wei     
+---------------------
+ 1111111111111111111
+(1 row)
+
+web3_backend=*# COMMIT;
+COMMIT
+
+-- Session A
+web3_backend=# BEGIN;
+UPDATE balances SET balance_wei = 1111111111111111111 WHERE wallet_id = 1 AND token_id = 1;
+COMMIT;
+BEGIN
+UPDATE 1
+COMMIT
+
+-- EXPERIMENT 2: REPEATABLE READ
+
+-- Session B
+web3_backend=# BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+SELECT balance_wei FROM balances WHERE wallet_id = 1 AND token_id = 1;
+BEGIN
+     balance_wei     
+---------------------
+ 1111111111111111111
+(1 row)
+
+web3_backend=*# SELECT balance_wei FROM balances WHERE wallet_id = 1 AND token_id = 1;
+     balance_wei     
+---------------------
+ 1111111111111111111
+(1 row)
+
+web3_backend=*# COMMIT;
+COMMIT
+
+-- Session A
+web3_backend=# BEGIN;
+UPDATE balances SET balance_wei = 2222222222222222222 WHERE wallet_id = 1 AND token_id = 1;
+COMMIT;
+BEGIN
+UPDATE 1
+COMMIT
