@@ -1,0 +1,15 @@
+web3_backend=> SELECT * FROM audit.registration_log;
+ id | wallet_address |         attempted_at          
+----+----------------+-------------------------------
+  1 | 0xabc123       | 2026-06-26 17:13:59.786309+07
+(1 row)
+
+web3_backend=> INSERT INTO audit.registration_log (wallet_address) VALUES ('0xmalicious');
+ERROR:  permission denied for table registration_log
+web3_backend=> CREATE TABLE public.test (id INT);
+ERROR:  permission denied for schema public
+LINE 1: CREATE TABLE public.test (id INT);
+                     ^
+web3_backend=> SELECT * FROM wallets LIMIT 1;
+ERROR:  permission denied for table wallets
+web3_backend=>
