@@ -1,0 +1,25 @@
+web3_backend=# INSERT INTO balances (wallet_id, token_id, balance_wei) VALUES (1, 2, 5000000000);
+ERROR:  duplicate key value violates unique constraint "balances_wallet_id_token_id_key"
+DETAIL:  Key (wallet_id, token_id)=(1, 2) already exists.
+web3_backend=# UPDATE balances SET balance_wei = balance_wei * 2 WHERE wallet_id = 1 AND token_id = 2;
+UPDATE 1
+web3_backend=# SELECT id, total_balance_wei FROM wallets WHERE id = 1;
+ id |  total_balance_wei  
+----+---------------------
+  1 | 5000000000001000000
+(1 row)
+
+web3_backend=# UPDATE wallets
+SET total_balance_wei = sub.total
+FROM (
+    SELECT wallet_id, SUM(balance_wei) AS total
+    FROM balances
+    GROUP BY wallet_id
+) AS sub
+WHERE wallets.id = sub.wallet_id;
+UPDATE 5
+web3_backend=# SELECT id, total_balance_wei FROM wallets WHERE id = 1;
+ id |  total_balance_wei  
+----+---------------------
+  1 | 5000000000002000000
+(1 row)
