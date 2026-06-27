@@ -1,0 +1,19 @@
+web3_backend=# INSERT INTO wallets (address, label) VALUES (NULL, 'test');
+ERROR:  null value in column "address" of relation "wallets" violates not-null constraint
+DETAIL:  Failing row contains (6, null, test, null, 2026-06-27 20:19:39.421021+07, 0).
+web3_backend=# INSERT INTO wallets (address, label) VALUES ('0xwallet1', 'duplicate');
+ERROR:  duplicate key value violates unique constraint "wallets_address_key"
+DETAIL:  Key (address)=(0xwallet1) already exists.
+web3_backend=# INSERT INTO tokens (symbol, name, decimals, contract_address) VALUES ('INVALID', 'BadToken', -1, '0xdead');
+ERROR:  new row for relation "tokens" violates check constraint "tokens_decimals_check"
+DETAIL:  Failing row contains (4, INVALID, BadToken, -1, 0xdead).
+web3_backend=# INSERT INTO balances (wallet_id, token_id, balance_wei) VALUES (9999, 1, 100);
+ERROR:  insert or update on table "balances" violates foreign key constraint "balances_wallet_id_fkey"
+DETAIL:  Key (wallet_id)=(9999) is not present in table "wallets".
+web3_backend=# INSERT INTO balances (wallet_id, token_id, balance_wei) VALUES (1, 1, 999);
+ERROR:  duplicate key value violates unique constraint "balances_wallet_id_token_id_key"
+DETAIL:  Key (wallet_id, token_id)=(1, 1) already exists.
+web3_backend=# UPDATE balances SET balance_wei = -100 WHERE wallet_id = 1 AND token_id = 1;
+ERROR:  new row for relation "balances" violates check constraint "balances_balance_wei_check"
+DETAIL:  Failing row contains (1, 1, 1, -100, 2026-06-25 17:00:42.216221+07).
+web3_backend=# 
