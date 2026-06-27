@@ -1,0 +1,15 @@
+-- BEFORE INDEX
+Seq Scan on test_large  (cost=0.00..847.00 rows=48 width=8) (actual time=0.178..4.177 rows=53 loops=1)
+   Filter: (value = 500)
+   Rows Removed by Filter: 49947
+ Planning Time: 0.362 ms
+ Execution Time: 4.196 ms
+
+-- AFTER INDEX
+Bitmap Heap Scan on test_large  (cost=4.66..122.50 rows=48 width=8) (actual time=0.044..0.114 rows=53 loops=1)
+   Recheck Cond: (value = 500)
+   Heap Blocks: exact=44
+   ->  Bitmap Index Scan on idx_test_large_value  (cost=0.00..4.65 rows=48 width=0) (actual time=0.029..0.030 rows=53 loops=1)
+         Index Cond: (value = 500)
+ Planning Time: 0.404 ms
+ Execution Time: 0.148 ms
